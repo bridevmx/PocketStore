@@ -1,0 +1,46 @@
+{
+  "name": "pocketrune",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Un template fullstack moderno con Svelte 5 (Runes), PocketBase y DaisyUI, sin TypeScript.",
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "pocketbase",
+    "daisyui",
+    "tailwind",
+    "javascript",
+    "fullstack",
+    "starter",
+    "template"
+  ],
+  "author": "Brian Marquez Hernandez",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bridevmx/PocketRune.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bridevmx/PocketRune/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "context": "node ./scripts/utils/create_context.cjs"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "iconify-icon": "^3.0.0",
+    "svelte": "^5.35.5",
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "daisyui": "^5.0.50",
+    "svelte-sonner": "^1.0.5",
+    "tailwindcss": "^4.1.11",
+    "tinro": "^0.6.12"
+  }
+}
