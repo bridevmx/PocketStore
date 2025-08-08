@@ -15,7 +15,8 @@ La filosofía de este template es la simplicidad y la potencia, adhiriéndose a 
 
 *   🌀 **Frontend Moderno con Svelte 5:** Utiliza la última versión de Svelte con "Runes" para un manejo de estado explícito y potente.
 *   ⚡ **Backend Integrado con PocketBase:** Aprovecha PocketBase como una base de datos, sistema de autenticación y servidor de archivos todo en uno.
-*   🔐 **Autenticación y Sesiones:** Flujo de autenticación completo (login, logout, actualización de perfil, cambio de email/contraseña) manejado a través del SDK de PocketBase.
+*   🔐 **Autenticación y Sesiones:** Flujo de autenticación completo (**registro**, login, logout, actualización de perfil, cambio de email/contraseña) manejado a través del SDK de PocketBase.
+*   📝 **Registro de Usuarios:** Formulario de registro con validación de contraseñas, asignación de rol por defecto y envío de correo de verificación.
 *   🛡️ **Roles y Permisos (RBAC):** Sistema de control de acceso basado en roles. Las rutas y los elementos del menú de navegación se muestran dinámicamente según los permisos del usuario.
 *   🚧 **Rutas Protegidas:** Componente `Guard.svelte` para proteger rutas del frontend basándose en los permisos del usuario autenticado.
 *   ⚙️ **Hooks de Backend Personalizados:** Incluye ejemplos en `pb_hooks` para extender la funcionalidad de PocketBase, como el endpoint `/api/me` para obtener datos del usuario enriquecidos.
@@ -129,20 +130,24 @@ Sigue estos pasos para tener el proyecto funcionando en tu máquina local.
 
 El ruteo se gestiona en `src/App.svelte` usando la librería **Tinro**. Aquí te mostramos cómo puedes agregar nuevas rutas.
 
-### Agregar una Ruta Estática (ej. `/about`)
+### Agregar una Ruta Estática (ej. `/auth/register`)
 
 1.  **Crea el Componente de la Página:**
-    Crea un nuevo archivo en `src/lib/routes/`, por ejemplo: `src/lib/routes/about/About.svelte`.
+    Crea un nuevo archivo en `src/lib/routes/`, por ejemplo: `src/lib/routes/auth/Register.svelte`.
 
     ```svelte
-    <!-- src/lib/routes/about/About.svelte -->
+    <!-- src/lib/routes/auth/Register.svelte -->
+    <script>
+        // Lógica de tu formulario de registro
+    </script>
+
     <svelte:head>
-        <title>Sobre Nosotros</title>
+        <title>Crear una Cuenta</title>
     </svelte:head>
 
     <div class="p-8">
-        <h1 class="text-4xl font-bold">Sobre Nosotros</h1>
-        <p class="mt-4">Esta es la página de información de nuestra aplicación.</p>
+        <h1 class="text-4xl font-bold">Registro</h1>
+        <!-- Contenido del formulario -->
     </div>
     ```
 
@@ -153,14 +158,14 @@ El ruteo se gestiona en `src/App.svelte` usando la librería **Tinro**. Aquí te
     <!-- src/App.svelte -->
     <script>
         // ... otros imports
-        import About from "$lib/routes/about/About.svelte"; // 👈 Importa tu nuevo componente
+        import Register from "$lib/routes/auth/Register.svelte"; // 👈 Importa tu nuevo componente
     </script>
 
     <LayoutDecider>
         {#snippet children()}
             <!-- ... otras rutas -->
-            <Route path="/about">  <!-- 👈 Agrega la nueva ruta -->
-                <About />
+            <Route path="/auth/register">  <!-- 👈 Agrega la nueva ruta -->
+                <Register />
             </Route>
         {/snippet}
     </LayoutDecider>
@@ -217,7 +222,7 @@ El ruteo se gestiona en `src/App.svelte` usando la librería **Tinro**. Aquí te
 
 ### 🔐 Autenticación y Autorización (RBAC)
 
-*   **`auth.store.svelte.js`**: Es el corazón del manejo de sesión en el frontend. Se inicializa al cargar la app, obtiene los datos del usuario a través del endpoint `/api/me` (definido en `pb_hooks`) y almacena el estado del usuario.
+*   **`auth.store.svelte.js`**: Es el corazón del manejo de sesión en el frontend. Se inicializa al cargar la app, obtiene los datos del usuario a través del endpoint `/api/me` (definido en `pb_hooks`) y almacena el estado del usuario. Además del login, maneja el **registro de nuevos usuarios**, asignándoles un rol por defecto y enviando un correo de verificación.
 *   **Permisos**: Los permisos de un usuario se obtienen a través de su rol (`user.expand.role.permissions.permissions`).
 *   **`Guard.svelte`**: Este componente envuelve las rutas protegidas. Recibe un array de `permissions` y solo renderiza el componente hijo si el usuario actual tiene todos los permisos requeridos.
 *   **Menú Dinámico**: El `Sidebar.svelte` obtiene los ítems de navegación desde `auth.navItems`, que se pueblan en `initAuth()` filtrando la colección `menu_items` de PocketBase según los permisos del usuario.

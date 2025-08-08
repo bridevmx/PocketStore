@@ -13,6 +13,7 @@ dist-ssr
 *.local
 *.exe
 scripts/utils/context.txt
+scripts/pocketbase/pb_data
 
 # Editor directories and files
 .vscode/*
