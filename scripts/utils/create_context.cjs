@@ -20,6 +20,12 @@ function getFilesContent(dir, allContent = '') {
       return;
     }
 
+    // Regla 3: Excluir la carpeta /scripts/pocketbase/pb_data
+    if (stat.isDirectory() && filePath.includes(path.join('scripts', 'pocketbase', 'pb_data'))) {
+      console.log(`Excluyendo directorio: ${filePath}`);
+      return;
+    }
+
     if (stat.isDirectory()) {
       allContent = getFilesContent(filePath, allContent);
     } else {
