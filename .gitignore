@@ -14,6 +14,7 @@ dist-ssr
 *.exe
 scripts/utils/context.txt
 scripts/pocketbase/pb_data
+scripts/pocketbase/pb_migrations
 
 # Editor directories and files
 .vscode/*
