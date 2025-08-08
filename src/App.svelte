@@ -7,6 +7,7 @@
     import Guard from "$lib/components/Guard.svelte";
     import IndexRoot from "$lib/routes/root/IndexRoot.svelte";
     import Login from "$lib/routes/auth/Login.svelte";
+    import Register from "$lib/routes/auth/Register.svelte";
     import { themeStore } from '$lib/stores/theme.store.svelte.js';
     import ConfirmEmailChange from "$lib/routes/auth/ConfirmEmailChange.svelte";
     import ConfirmPasswordReset from "$lib/routes/auth/ConfirmPasswordReset.svelte";
@@ -36,6 +37,10 @@
 
         <Route path="/auth/login">
             <Login params={{ authCollectionName: userCollectionName }} />
+        </Route>
+        
+        <Route path="/auth/register">
+            <Register />
         </Route>
 
         <Route path="/dashboard" let:meta>

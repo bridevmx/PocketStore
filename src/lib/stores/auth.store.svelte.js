@@ -70,6 +70,43 @@ export async function login(identity, password, collectionName) {
     }
 }
 
+// --- NUEVA FUNCIÓN DE REGISTRO ---
+export async function register(email, username, phone, password, passwordConfirm) {
+    // NOTA: Reemplaza 'ID_DEL_ROL_POR_DEFECTO' con el ID real del rol que deseas
+    // asignar a los nuevos usuarios. Puedes encontrar este ID en tu panel de PocketBase.
+    const defaultUserRoleId = 'ux4y8824xzrqwgt'; // Ejemplo: ID del rol 'roles'
+
+    const data = {
+        email,
+        username,
+        phone,
+        password,
+        passwordConfirm,
+        role: defaultUserRoleId,
+        avatar: `https://ui-avatars.com/api/?name=${username}&rounded=true&size=128`
+    };
+
+    try {
+        await pb.collection('users').create(data);
+        // Opcional: Solicitar verificación de correo después del registro
+        await pb.collection('users').requestVerification(email);
+    } catch (error) {
+        console.error("Error en el registro:", error);
+        // Personaliza los mensajes de error basados en la respuesta de PocketBase
+        if (error.data?.data?.email?.code === 'validation_not_unique') {
+            throw new Error("Este correo electrónico ya está en uso.");
+        }
+        if (error.data?.data?.username?.code === 'validation_not_unique') {
+            throw new Error("Este nombre de usuario ya está en uso.");
+        }
+        if (error.data?.data?.phone?.code === 'validation_not_unique') {
+            throw new Error("Este número de teléfono ya está en uso.");
+        }
+        throw new Error("No se pudo completar el registro. Inténtalo de nuevo.");
+    }
+}
+// --- FIN DE LA NUEVA FUNCIÓN ---
+
 export function logout() {
     pb.authStore.clear();
     state.user = null;
