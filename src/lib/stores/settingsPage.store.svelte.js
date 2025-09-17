@@ -1,6 +1,6 @@
 export const SettingsPage = $state({
     header: {
-        title: 'My Page Template',
+        title: 'PocketStore',
         urlLogo: 'https://www.example.com/logo.png',
         urlPath: '/'
     }

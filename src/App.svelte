@@ -45,7 +45,7 @@
 
         <Route path="/dashboard" let:meta>
             <Guard
-                permissions={["dashboard_access"]}
+                permissions={["page_buyer_dashboard:view"]}
                 component={() => import("$lib/routes/dashboard/DasboardIndex.svelte")}
                 params={{ authCollectionName: userCollectionName, ...meta.params }}
             />
@@ -53,7 +53,7 @@
 
         <Route path="/profile" let:meta>
             <Guard
-                permissions={["profile_view_own"]}
+                permissions={["page_buyer_profile:view"]}
                 component={() => import("$lib/routes/profile/ProfileIndex.svelte")}
                 params={{ ...meta.params }}
             />
@@ -61,7 +61,7 @@
 
         <Route path="/profile/edit" let:meta>
             <Guard
-                permissions={["profile_edit_own"]}
+                permissions={["page_buyer_profile:view"]}
                 component={() => import("$lib/routes/profile/ProfileEdit.svelte")}
                 params={{ ...meta.params }}
             />

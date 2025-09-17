@@ -37,7 +37,8 @@
         isLoading = true;
 
         try {
-            await updateProfile(auth.user.id, auth.user.collectionName, {
+            // CORRECTED: The function expects only two arguments: userId and the data object.
+            await updateProfile(auth.user.id, {
                 username: formData.username,
                 phone: formData.phone,
                 avatar: formData.avatar,
