@@ -45,15 +45,79 @@
 
         <Route path="/dashboard" let:meta>
             <Guard
-                permissions={["page_buyer_dashboard:view"]}
+                permissions={["dashboard:view"]}
                 component={() => import("$lib/routes/dashboard/DasboardIndex.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/campaigns" let:meta>
+            <Guard
+                permissions={["campaigns:list"]}
+                component={() => import("$lib/routes/campaigns/Campaigns.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/campaigns/new" let:meta>
+            <Guard
+                permissions={["campaigns:create"]}
+                component={() => import("$lib/routes/campaigns/NewCampaign.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/campaigns/send/:id" let:meta>
+            <Guard
+                permissions={["campaigns:create"]}
+                component={() => import("$lib/routes/campaigns/SendCampaign.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/campaigns/analytics/:id" let:meta>
+            <Guard
+                permissions={["campaigns:create"]}
+                component={() => import("$lib/routes/campaigns/Analytics.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/contacts" let:meta>
+            <Guard
+                permissions={["contacts:list", "contacts:create", "contacts:update", "contacts:delete"]}
+                component={() => import("$lib/routes/contacts/IndexContacts.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/contacts/import" let:meta>
+            <Guard
+                permissions={["contacts:create"]}
+                component={() => import("$lib/routes/contacts/Import.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/urls" let:meta>
+            <Guard
+                permissions={["url_shorten:view"]}
+                component={() => import("$lib/routes/urls/NewUrlShorten.svelte")}
+                params={{ authCollectionName: userCollectionName, ...meta.params }}
+            />
+        </Route>
+
+        <Route path="/urls/:id/stats" let:meta>
+            <Guard
+                permissions={["url_shorten:view"]}
+                component={() => import("$lib/routes/urls/StatsUrls.svelte")}
                 params={{ authCollectionName: userCollectionName, ...meta.params }}
             />
         </Route>
 
         <Route path="/profile" let:meta>
             <Guard
-                permissions={["page_buyer_profile:view"]}
+                permissions={["profile:view"]}
                 component={() => import("$lib/routes/profile/ProfileIndex.svelte")}
                 params={{ ...meta.params }}
             />
@@ -61,7 +125,7 @@
 
         <Route path="/profile/edit" let:meta>
             <Guard
-                permissions={["page_buyer_profile:view"]}
+                permissions={["profile:update"]}
                 component={() => import("$lib/routes/profile/ProfileEdit.svelte")}
                 params={{ ...meta.params }}
             />

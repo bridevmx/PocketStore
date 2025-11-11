@@ -39,7 +39,10 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
     "daisyui": "^5.0.50",
+    "dayjs": "^1.11.19",
+    "papaparse": "^5.5.3",
     "pocketbase": "^0.26.2",
+    "qrcode": "^1.5.4",
     "svelte-sonner": "^1.0.5",
     "tailwindcss": "^4.1.11",
     "tinro": "^0.6.12"

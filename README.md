@@ -19,7 +19,7 @@ La filosofía de este template es la simplicidad y la potencia, adhiriéndose a 
 *   📝 **Registro de Usuarios con Rol Dinámico:** Formulario de registro con validación, asignación automática del rol "user" y envío de correo de verificación.
 *   🛡️ **Roles y Permisos (RBAC):** Sistema de control de acceso basado en roles. Las rutas y los elementos del menú de navegación se muestran dinámicamente según los permisos del usuario.
 *   🚧 **Rutas Protegidas:** Componente `Guard.svelte` para proteger rutas del frontend basándose en los permisos del usuario autenticado.
-*   🛍️ **Estructura E-Commerce:** Incluye colecciones de base de datos para `users`, `roles`, `permissions`, `products`, `categories`, `variants` y `stores`.
+*   🛍️ **Estructura E-Commerce:** Incluye colecciones de base de datos para `users`, `roles`, `permissions` y `menu_items`.
 *   🎨 **Estilización Exclusiva con DaisyUI:** Un conjunto completo de componentes de UI listos para usar y personalizables a través de temas.
 *   🎨 **Theming Dinámico:** Los usuarios pueden seleccionar y cambiar el tema de la aplicación, con persistencia en `localStorage`.
 *   🧭 **Ruteo del Lado del Cliente:** Implementado con [Tinro](https://github.com/AlexxNB/tinro) en modo hash.
