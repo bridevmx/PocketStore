@@ -12,17 +12,17 @@
     }
 </script>
 
-<ul class="menu p-4 w-60 min-h-full bg-base-200 text-base-content">
+<ul class="menu p-4 w-45 min-h-full bg-base-200 text-base-content">
     <li class="menu-title">
         <span>Menú</span>
     </li>
     
-    <li>
+    <!-- <li>
         <a href="#/" use:active on:click={closeDrawer} class="items-center">
             <Icon name="material-symbols:home" width="24" height="24" />
             Inicio
         </a>
-    </li>
+    </li> -->
 
     {#each auth.navItems as link}
         <li>
